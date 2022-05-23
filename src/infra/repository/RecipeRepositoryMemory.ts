@@ -3,6 +3,8 @@ import Recipe from "../../core/entity/Recipe";
 import IRecipeRepository from "../../core/repository/IRecipeRepository";
 
 export default class RecipeRepositoryMemory implements IRecipeRepository {
+  // dados em memória, para testes
+
   recipes = [
     {
       id: "5d6ede6a0ba62570afcedd3a",
@@ -16,7 +18,7 @@ export default class RecipeRepositoryMemory implements IRecipeRepository {
   ];
   recipeEvaluations = [];
 
-  getRecipe(id: string): Promise<Recipe> {
+  async getRecipe(id: string): Promise<Recipe> {
     // implementação de funções com banco de dados aqui?
     // retorna um Recipe
     const recipeData = this.recipes.find((recipe) => recipe.id === id);
@@ -33,12 +35,12 @@ export default class RecipeRepositoryMemory implements IRecipeRepository {
     return Promise.resolve(recipe);
   }
 
-  saveRecipeEvaluation(
+  async saveRecipeEvaluation(
     recipeId: string,
     userId: string,
     score: number,
     comment: string
-  ): void {
+  ): Promise<void> {
     // salva uma avaliação em na receita
     this.recipeEvaluations.push({ recipeId, userId, score, comment });
   }

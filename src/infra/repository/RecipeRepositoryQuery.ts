@@ -3,10 +3,10 @@ import IRecipeRepository from "../../core/repository/IRecipeRepository";
 import RecipeModel from "../model/RecipeModel";
 
 export default class RecipeRepositoryQuery implements IRecipeRepository {
+  // implementações com banco de dados
+
   async getRecipe(id: string): Promise<Recipe> {
-    console.log("[a]");
     const recipe = await RecipeModel.findById(id);
-    console.log("[b]");
     return recipe;
   }
 
